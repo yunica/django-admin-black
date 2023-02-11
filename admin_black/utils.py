@@ -26,7 +26,6 @@ from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib import admin
 from django.utils.text import slugify
 
-
 try:
     from django.utils.translation import ugettext_lazy as _
 except ImportError:
@@ -36,7 +35,6 @@ try:
     from collections import OrderedDict
 except ImportError:
     from ordereddict import OrderedDict  # Python 2.6
-
 
 default_apps_icon = {
     'auth': 'tim-icons icon-single-02'
@@ -120,9 +118,7 @@ def get_app_list(context, order=True):
                         'models': [model_dict],
                     }
 
-                if not app_icon:
-                    app_icon = default_apps_icon[app_label] if app_label in default_apps_icon else None
-                app_dict[app_label]['icon'] = app_icon
+                app_dict[app_label]['icon'] = default_apps_icon.get(app_label, "tim-icons icon-settings-gear-63")
 
     # Sort the apps alphabetically.
     app_list = list(app_dict.values())

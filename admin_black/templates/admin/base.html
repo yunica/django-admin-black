@@ -8,81 +8,81 @@
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static "admin_black/assets/img/apple-icon.png" %}">
-    <link rel="icon" type="image/png" href="{% static "admin_black/assets/img/favicon.png" %}">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static "admin_black/assets/img/apple-icon.png" %}">
+  <link rel="icon" type="image/png" href="{% static "admin_black/assets/img/favicon.png" %}">
 
-    <title>{% block title %}{% endblock %}</title>
+  <title>{% block title %}{% endblock %}</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
-    <link href="{% static "admin_black/assets/css/fontawesome-free-6.3.0-web/css/all.min.css" %}" rel="stylesheet">
-{#    <link href="{% static "admin/css/responsive.css" %}" rel="stylesheet"/>#}
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
+  <link href="{% static "admin_black/assets/css/fontawesome-free-6.3.0-web/css/all.min.css" %}" rel="stylesheet">
+  {#    <link href="{% static "admin/css/responsive.css" %}" rel="stylesheet"/>#}
 
-    {% if LANGUAGE_BIDI %}
-{#        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet"/>#}
-{#        <link href="https://lib.arvancloud.com/ar/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet"/>#}
-        <link href="{% static "admin_black/assets/css/bootstrap-rtl.css" %}" rel="stylesheet"/>
-{#        <link href="{% static "admin/css/responsive_rtl.css" %}" rel="stylesheet"/>#}
-    {% endif %}
+  {% if LANGUAGE_BIDI %}
+    {#        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet"/>#}
+    {#        <link href="https://lib.arvancloud.com/ar/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet"/>#}
+    <link href="{% static "admin_black/assets/css/bootstrap-rtl.css" %}" rel="stylesheet"/>
+    {#        <link href="{% static "admin/css/responsive_rtl.css" %}" rel="stylesheet"/>#}
+  {% endif %}
 
-    <link href="{% static "admin_black/assets/css/nucleo-icons.css" %}" rel="stylesheet"/>
-    <link href="{% static "admin_black/assets/css/black-dashboard.css" %}" rel="stylesheet"/>
-    <link href="{% static "admin_black/assets/demo/demo.css" %}" rel="stylesheet"/>
-    <link href="{% static "admin_black/assets/css/styles.css" %}" rel="stylesheet"/>
+  <link href="{% static "admin_black/assets/css/nucleo-icons.css" %}" rel="stylesheet"/>
+  <link href="{% static "admin_black/assets/css/black-dashboard.css" %}" rel="stylesheet"/>
+  <link href="{% static "admin_black/assets/demo/demo.css" %}" rel="stylesheet"/>
+  <link href="{% static "admin_black/assets/css/styles.css" %}" rel="stylesheet"/>
 
-    {% block extrastyle %}{% endblock %}
-    {% block extrahead %}{% endblock %}
-    {% block blockbots %}
-        <meta name="robots" content="NONE,NOARCHIVE">
-    {% endblock %}
+  {% block extrastyle %}{% endblock %}
+  {% block extrahead %}{% endblock %}
+  {% block blockbots %}
+    <meta name="robots" content="NONE,NOARCHIVE">
+  {% endblock %}
 </head>
 
 <body class="{% if LANGUAGE_BIDI %}rtl menu-on-right{% endif %} {% if not admin_black_setting.dark_mode %}white-content{% endif %}">
 
 <div class="wrapper">
-    {% include "admin/sidebar.html" %}
+  {% include "admin/sidebar.html" %}
 
-    <div class="main-panel">
-        {% if user.is_authenticated %}
-            <!-- Navbar -->
-            {% include "admin/navigation.html" %}
-            <!-- End Navbar -->
+  <div class="main-panel">
+    {% if user.is_authenticated %}
+      <!-- Navbar -->
+      {% include "admin/navigation.html" %}
+      <!-- End Navbar -->
 
-            <!-- Breadcrumbs -->
-            {% if not is_popup and user.is_authenticated %}
-                <div class="breadcrumbs_panel">
-                    {% block breadcrumbs %}
-                        <div class="breadcrumbs{% if LANGUAGE_BIDI %} rbc{% else %} lbc{% endif %}">
-                            <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-                            {% if title %} &rsaquo; {{ title }}{% endif %}
-                        </div>
-                    {% endblock %}
-                </div>
-            {% endif %}
-            <!-- End Breadcrumbs -->
-        {% endif %}
+      <!-- Breadcrumbs -->
+      {% if not is_popup and user.is_authenticated %}
+        <div class="breadcrumbs_panel">
+          {% block breadcrumbs %}
+            <div class="breadcrumbs{% if LANGUAGE_BIDI %} rbc{% else %} lbc{% endif %}">
+              <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+              {% if title %} &rsaquo; {{ title }}{% endif %}
+            </div>
+          {% endblock %}
+        </div>
+      {% endif %}
+      <!-- End Breadcrumbs -->
+    {% endif %}
 
-        <!-- Content -->
-        {% block content %}{% endblock %}
-        <!-- End Content -->
+    <!-- Content -->
+    {% block content %}{% endblock %}
+    <!-- End Content -->
 
-        {% if user.is_authenticated %}
-            <!-- Sidebar -->
-            {% block sidebar %}{% endblock %}
-            <!-- End Sidebar -->
-        {% endif %}
+    {% if user.is_authenticated %}
+      <!-- Sidebar -->
+      {% block sidebar %}{% endblock %}
+      <!-- End Sidebar -->
+    {% endif %}
 
-        <!-- Footer -->
-        {% block footer %}
-            {% include "admin/footer.html" %}
-        {% endblock %}
-        <!-- End Footer -->
-    </div>
+    <!-- Footer -->
+    {% block footer %}
+      {% include "admin/footer.html" %}
+    {% endblock %}
+    <!-- End Footer -->
+  </div>
 </div>
 
 {% if user.is_authenticated %}
-    {% include "admin/admin_black_setting.html" %}
+  {% include "admin/admin_black_setting.html" %}
 {% endif %}
 
 <!-- Core JS Files -->
@@ -96,9 +96,11 @@
 <!--  Notifications Plugin    -->
 <script src="{% static "admin_black/assets/js/plugins/bootstrap-notify.js" %}"></script>
 <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{% static "admin_black/assets/js/black-dashboard.min.js" %}"></script>
+<script src="{% static "admin_black/assets/js/black-dashboard.js" %}"></script>
 <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-{% block dashScripts %} {% endblock %}
+{% block dashScripts %}
+  <script src="{% static "admin_black/assets/demo/demo.js" %}"></script>
+{% endblock %}
 <script src="{% static "admin_black/assets/js/plugins/t.js" %}"></script>
 <script src="{% static "admin_black/assets/js/scripts.js" %}"></script>
 

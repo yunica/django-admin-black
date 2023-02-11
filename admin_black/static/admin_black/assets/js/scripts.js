@@ -155,11 +155,6 @@ $(document).ready(function () {
 
     demo.initDashboardPageCharts();
 
-    window.TrackJS &&
-    TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "black-dashboard-free"
-    });
 });
 
 function ChangeSidBarBackground(new_color) {

@@ -1,6 +1,6 @@
 import re
 from django import template
-
+from django.conf import settings
 from admin_black.utils import get_menu_items
 
 register = template.Library()
@@ -53,3 +53,8 @@ def get_admin_black_setting(context):
     }
 
     return res
+
+
+@assignment_tag(takes_context=False)
+def get_project_name():
+    return getattr(settings, "TEMPLATE_PROJECT_NAME", "DJANGO ADMIN BLACK")

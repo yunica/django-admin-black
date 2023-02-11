@@ -13,3 +13,6 @@ class AdminBlackSetting(models.Model):
     class Meta:
         verbose_name = _('dashboard setting')
         verbose_name_plural = _('dashboard settings')
+
+    def __str__(self):
+        return f"{self.dark_mode} {self.sidebar_background} {self.user.username}"
